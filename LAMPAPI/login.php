@@ -19,7 +19,7 @@ else {
         returnLogin($row['id'], $row['email']);
     }
     else {
-        returnError("notFound");
+        returnError("not found");
     }
 }
 
@@ -28,7 +28,7 @@ function jsonify($obj){
     echo $obj;
 }
 function returnLogin($id, $email){
-    $retValue = '{"id":' . $id . ',"email":"' . $email . ',"error":""}';
+    $retValue = '{"id":' . $id . ',"email":' . $email . ',"error":""}';
     jsonify($retValue);
 }
 function returnError($err) {
