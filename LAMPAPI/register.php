@@ -1,4 +1,7 @@
 <?php
+/* TODO
+    [] implement field valdiation b4 performing a query
+*/
 $data = json_decode(file_get_contents("php://input"), true); // retrieve body from POST request
 $username = $data["username"];
 $password = $data["password"];
