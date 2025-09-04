@@ -2,6 +2,7 @@
 /* TODO
     [] implement hashing for password 
     [] implement env variables instead of storing passwords in repo
+    [] implement field valdiation b4 performing a query
 */
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -23,15 +24,33 @@ else {
     }
 }
 
-function jsonify($obj){
+function jsonify($obj, $status=200){
     header('Content-type: application/json');
-    echo $obj;
+    $json = json_encode($obj);
+    if($json === false){
+        $status = 500;
+        $json = json_encode([
+           "id" => 0,
+           "email" => "",
+           "error" => "JSON encoding failed" 
+        ]);
+    }
+    http_response_code($status);
+    echo $json;
 }
 function returnLogin($id, $email){
-    $retValue = '{"id":' . $id . ',"email":' . $email . ',"error":""}';
+    $retValue = ([
+        "id" => $id,
+        "email" => $email,
+        "error" => ""
+    ]);
     jsonify($retValue);
 }
-function returnError($err) {
-    $retValue = '{"id":0, "email": "", "error":"' . $err . '"}';
-    jsonify($retValue);
+function returnError($err, $status=400) {
+    $retValue = ([
+        "id" => 0,
+        "email" => "",
+        "error" => $err
+    ]);
+    jsonify($retValue, $status);
 }
