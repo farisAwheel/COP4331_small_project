@@ -20,7 +20,7 @@ else {
         returnLogin($row['id'], $row['email']);
     }
     else {
-        returnError("not found");
+        returnError("No user found");
     }
 }
 
