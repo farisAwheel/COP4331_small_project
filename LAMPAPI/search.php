@@ -15,11 +15,11 @@ else {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if($row = $result->fetch_all(MYSQL_ASSOC)){
+    if($row = $result->fetch_all(MYSQLI_ASSOC)){
         returnResult($row);
     }
     else {
-        returnResult("");
+        returnResult([]);
     }
 }
 
