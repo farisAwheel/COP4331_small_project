@@ -27,8 +27,6 @@ function jsonify($obj, $status=200){
     if($json === false){
         $status = 500;
         $json = json_encode([
-           "id" => 0,
-           "email" => "",
            "error" => "JSON encoding failed" 
         ]);
     }

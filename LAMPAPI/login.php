@@ -22,6 +22,9 @@ else {
     else {
         returnError("No user found");
     }
+    
+    $stmt->close();
+    $conn->close();
 }
 
 function jsonify($obj, $status=200){
