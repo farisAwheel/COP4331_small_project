@@ -1,20 +1,20 @@
 <?php
-/* TODO
-    [] implement field valdiation b4 performing a query
-*/
+// app sends a user id and a search query, api returns list of contacts
 $data = json_decode(file_get_contents("php://input"), true); // retrieve body from POST request
-$username = $data["username"];
-$password = $data["password"];
+$userid = $data["user_id"];
+$id = $data["id"];
+$name = $data["name"];
 $email = $data["email"];
+$phone = $data["phone"];
 
-// attempt to connec to db
+
 $conn = new mysqli("localhost", "user", "L@MPGroup1A", "contact_manager"); 
 if($conn->connect_error) {
     returnError($conn->connect_error, 500);
 }
 else {
-    $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES(?, ?, ?)");
-    $stmt->bind_param("sss", $username, $password, $email);
+    $stmt = $conn->prepare("UPDATE contacts SET name = ?, email = ?, phone = ? WHERE id = ? AND user_id = ?");
+    $stmt->bind_param("sssii", $name, $email, $phone, $id, $userid);
     $stmt->execute();
     $stmt->close();
     $conn->close();
@@ -27,6 +27,8 @@ function jsonify($obj, $status=200){
     if($json === false){
         $status = 500;
         $json = json_encode([
+           "id" => 0,
+           "email" => "",
            "error" => "JSON encoding failed" 
         ]);
     }

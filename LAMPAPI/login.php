@@ -20,8 +20,11 @@ else {
         returnLogin($row['id'], $row['email']);
     }
     else {
-        returnError("not found");
+        returnError("No user found");
     }
+    
+    $stmt->close();
+    $conn->close();
 }
 
 function jsonify($obj, $status=200){
