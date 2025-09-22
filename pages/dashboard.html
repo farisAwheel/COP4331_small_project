@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang ="en">
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
+      .hidden{display:none!important}
+      .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:1000}
+      .modal-content{background:#fff;border-radius:12px;max-width:520px;width:100%;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    </style>
+</head>
+<body class="auth-page">
+  <header class="site-header">
+    <div class="brand">
+      <a class="brand-link" href="/">
+        <img class="brand-mark" src="/images/logo-light.png" alt="Site logo" />
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card auth-card">
+      <h1 class="card-title">Contacts Dashboard</h1>
+      <p id="who" class="form-message" data-state="success"></p>
+
+      <div class="field">
+          <label class="visually-hidden" for="searchInput">Search</label>
+          <div class="input-wrap">
+          <input id="searchInput" type="text" placeholder="Search contacts..." />
+          </div>
+      </div>
+      <div class="buttons">
+      <button id="searchBtn" class="btn primary" type="button">Search</button>
+      <button id="showAddFormBtn" class="btn primary" type="button">Add Contact</button>
+    </div>
+
+    <p id="dashMsg" class="form-message" aria-live="polite"></p>
+
+    <div class="card" style="padding:0;">
+        <table style="width:100%; border-collapse:collapse;">
+          <caption class="visually-hidden">Your contacts</caption>
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align:left; padding:12px;">Name</th>
+                    <th scope="col" style="text-align:left; padding:12px;">Email</th>
+                    <th scope="col" style="text-align:left; padding:12px;">Phone Number</th>
+                    <th scope="col" style="text-align:left; padding:12px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+            </table>
+    </div>
+
+    <div id="resultBar" class="buttons" style="justify-content: space-between; align-items: center; margin-top: 8px;">
+      <span id="resultCount" aria-live="polite"></span>
+      <nav id="pager" aria-label="Contact results pagination" class="buttons">
+       <button id="prevPage" class="btn" type="button" disabled>Prev</button>
+        <button id="nextPage" class="btn" type="button" disabled>Next</button>
+      </nav>
+    </div>
+
+    <div class="buttons" style="margin-top: 12px;">
+        <a href="/pages/login.html?logout=1" class="btn" data-logout="true">Sign out</a>
+    </div>
+  </section>
+</main>
+
+<div id="contactModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div class="modal-content" role="document">
+      <h2 id="contactModalTitle">Add Contact</h2>
+      <form id="contactForm" class="form" novalidate>
+        <input type="hidden" id="c-id" />
+        <div class="field">
+          <label for="c-name">Name</label>
+          <div class="input-wrap">
+            <input id="c-name" name="name" type="text" required placeholder="Full name" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-email">Email</label>
+          <div class="input-wrap">
+            <input id="c-email" name="email" type="email" required placeholder="name@example.com" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-phone">Phone</label>
+          <div class="input-wrap">
+            <input id="c-phone" name="phone" type="text" inputmode="tel" required placeholder="(555) 555-5555" />
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="btn primary" type="submit">Save</button>
+          <button id="cancelModalBtn" class="btn" type="button">Cancel</button>
+        </div>
+        <p id="formMsg" class="form-message" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+
+       <script src="../js/script.js" defer></script>
+       <script src="../js/dashboard.js" defer></script>
+    </body>
+    </html>
