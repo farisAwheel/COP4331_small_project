@@ -1,13 +1,12 @@
 <?php
 /* TODO
-    [] implement field valdiation b4 performing a query
+    [] implement field validation b4 performing a query
 */
-$data = json_decode(file_get_contents("php://input"), true); // retrieve body from POST request
+$data = json_decode(file_get_contents("php://input"), true);
 $username = $data["username"];
 $password = $data["password"];
 $email = $data["email"];
 
-// attempt to connec to db
 $conn = new mysqli("localhost", "user", "L@MPGroup1A", "contact_manager"); 
 if($conn->connect_error) {
     returnError($conn->connect_error, 500);

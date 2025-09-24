@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Sign in</title>
+  <title>Create account</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,19 +22,19 @@
 
   <main class="container">
     <section class="card auth-card">
-      <h1 class="card-title">Sign in</h1>
+      <h1 class="card-title">Create account</h1>
 
-      <form id="loginForm" class="form" novalidate>
+      <form id="registerForm" class="form" novalidate>
         <div class="field with-icon">
-          <label class="visually-hidden" for="username">Username</label>
+          <label class="visually-hidden" for="reg-username">Username</label>
           <div class="input-wrap">
             <span class="field-icon icon-user" aria-hidden="true"></span>
             <input
-              id="username"
+              id="reg-username"
               name="username"
               type="text"
               inputmode="text"
-              autocomplete="username"
+              autocomplete="nickname"
               autocapitalize="none"
               autocorrect="off"
               spellcheck="false"
@@ -44,15 +44,34 @@
           </div>
         </div>
 
+        <div class="field with-icon">
+          <label class="visually-hidden" for="reg-email">Email</label>
+          <div class="input-wrap">
+            <span class="field-icon icon-mail" aria-hidden="true"></span>
+            <input
+              id="reg-email"
+              name="email"
+              type="text"
+              inputmode="email"
+              autocomplete="email"
+              autocapitalize="none"
+              autocorrect="off"
+              spellcheck="false"
+              required
+              placeholder="Email"
+            />
+          </div>
+        </div>
+
         <div class="field with-icon with-eye">
-          <label class="visually-hidden" for="password">Password</label>
+          <label class="visually-hidden" for="reg-password">Password</label>
           <div class="input-wrap">
             <span class="field-icon icon-lock" aria-hidden="true"></span>
             <input
-              id="password"
+              id="reg-password"
               name="password"
               type="password"
-              autocomplete="current-password"
+              autocomplete="new-password"
               required
               data-eye-toggle="true"
               placeholder="Password"
@@ -63,22 +82,15 @@
           </div>
         </div>
 
-        <div class="field checkbox">
-          <label class="checkbox-label">
-            <input id="remember" type="checkbox" />
-            <span>Remember me</span>
-          </label>
-        </div>
-
         <div class="buttons">
-          <button class="btn primary" type="submit">Sign in</button>
+          <button class="btn primary" type="submit">Create account</button>
         </div>
 
-        <div id="loginMessage" class="form-message" role="status" aria-live="polite"></div>
+        <div id="registerMessage" class="form-message" role="status" aria-live="polite"></div>
 
         <p class="secondary-action">
-          Don’t have an account?
-          <a href="/pages/register.html">Create one</a>
+          Already have an account?
+          <a href="/pages/login.html">Sign in</a>
         </p>
       </form>
     </section>

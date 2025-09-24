@@ -1,5 +1,5 @@
 <?php
-// app sends a user id and a search query, api returns list of contacts
+// app sends a user id and the contact's id api deletes corresponding contact
 $data = json_decode(file_get_contents("php://input"), true); // retrieve body from POST request
 $userid = $data["user_id"];
 $id = $data["id"];
@@ -24,8 +24,6 @@ function jsonify($obj, $status=200){
     if($json === false){
         $status = 500;
         $json = json_encode([
-           "id" => 0,
-           "email" => "",
            "error" => "JSON encoding failed" 
         ]);
     }
@@ -33,7 +31,7 @@ function jsonify($obj, $status=200){
     echo $json;
 }
 function returnError($err, $status=400) {
-    $retValue = ([
+	$retValue = ([
         "error" => $err
     ]);
     jsonify($retValue, $status);
