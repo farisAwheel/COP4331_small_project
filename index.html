@@ -1,13 +1,47 @@
-<html>
-  <head></head>
-
-  <body>
-    <p>hi</p>
-
-    <div id="login">
-      <input type="text" id="username" placeholder="username" /><br />
-      <input type="text" id="password" placeholder="password" /><br />
-      <button type="button" id="loginButton" onclick="login();">login</button>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Home • MyContact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a class="brand-link" href="/">
+        <img class="brand-mark" src="/images/logo-light.png" alt="Site logo" />
+      </a>
+      <a class="brand-github" href="https://github.com/farisAwheel/COP4331_small_project" target="_blank" rel="noopener">Github</a>
     </div>
-  </body>
+    <div class="nav-right"></div>
+  </header>
+
+  <main class="container">
+    <section class="card auth-card home-card" aria-labelledby="homeTitle">
+      <h1 id="homeTitle" class="card-title">Your contacts, organized.</h1>
+      <p id="homeSubtitle" class="home-subtitle">
+        Add, search, and manage your personal contacts securely from anywhere.
+      </p>
+
+      <div id="homeActionsLoggedOut" class="hero-actions" aria-live="polite">
+        <a id="homeSignInBtn" class="btn primary" href="/pages/login.html">Sign in</a>
+        <a id="homeRegisterBtn" class="btn" href="/pages/register.html">Create account</a>
+      </div>
+
+      <div id="homeActionsLoggedIn" class="hero-actions" aria-live="polite" hidden>
+        <p class="home-greeting">Welcome back, <span id="homeUsername"></span>.</p>
+        <a id="homeDashboardBtn" class="btn primary" href="/pages/dashboard.html">Open Dashboard</a>
+      </div>
+
+      <p id="landingMessage" class="form-message" aria-live="polite" hidden></p>
+      <p id="landingActions" class="secondary-action" hidden></p>
+    </section>
+  </main>
+
+  <script src="/js/script.js" defer></script>
+</body>
 </html>

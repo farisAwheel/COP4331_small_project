@@ -11,16 +11,16 @@ if($conn->connect_error) {
     returnError($conn->connect_error);
 }
 else {
-    $stmt = $conn->prepare("SELECT id, email FROM users WHERE username=? AND password=?");
+    $stmt = $conn->prepare("SELECT id, email, username FROM users WHERE BINARY username=? AND BINARY password=?");
     $stmt->bind_param("ss", $data["username"], $data["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if($row = $result->fetch_assoc()){
-        returnLogin($row['id'], $row['email']);
+        returnLogin($row['id'], $row['email'], $row['username']);
     }
     else {
-        returnError("No user found");
+        returnError("Invalid username or password.");
     }
     
     $stmt->close();
@@ -35,16 +35,18 @@ function jsonify($obj, $status=200){
         $json = json_encode([
            "id" => 0,
            "email" => "",
+           "username" => "",
            "error" => "JSON encoding failed" 
         ]);
     }
     http_response_code($status);
     echo $json;
 }
-function returnLogin($id, $email){
+function returnLogin($id, $email, $username){
     $retValue = ([
         "id" => $id,
         "email" => $email,
+        "username" => $username,
         "error" => ""
     ]);
     jsonify($retValue);
@@ -53,6 +55,7 @@ function returnError($err, $status=400) {
     $retValue = ([
         "id" => 0,
         "email" => "",
+        "username" => "",
         "error" => $err
     ]);
     jsonify($retValue, $status);
